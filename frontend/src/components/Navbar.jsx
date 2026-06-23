@@ -1,14 +1,16 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const token = localStorage.getItem("token");
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    window.location.href = "/login";
+    navigate("/login");
   };
 
   const navLinkClass = ({ isActive }) =>
@@ -23,13 +25,14 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           to="/"
-          className="text-2xl font-bold text-white tracking-wide"
+          className="text-2xl font-extrabold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"
         >
           Career Connect
         </Link>
 
-        {/* Nav Links */}
+        {/* Navigation Links */}
         <ul className="flex items-center gap-8">
+
           <li>
             <NavLink to="/" className={navLinkClass}>
               Home
@@ -37,32 +40,43 @@ const Navbar = () => {
           </li>
 
           <li>
-            <NavLink to="/jobs" className={navLinkClass}>
-              Jobs
+            <NavLink to="/about" className={navLinkClass}>
+              About
             </NavLink>
           </li>
 
-          <li>
-            <NavLink to="/contact" className={navLinkClass}>
-              Contact
-            </NavLink>
-          </li>
+          {token && (
+            <>
+              <li>
+                <NavLink to="/jobs" className={navLinkClass}>
+                  Jobs
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/contact" className={navLinkClass}>
+                  Contact
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
 
         {/* Auth Buttons */}
-        <div className="flex gap-3">
+        <div className="flex items-center gap-3">
+
           {!token ? (
             <>
               <Link
                 to="/login"
-                className="px-5 py-2 rounded-lg border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white transition"
+                className="px-5 py-2 rounded-lg border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white transition duration-300"
               >
                 Login
               </Link>
 
               <Link
                 to="/register"
-                className="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition"
+                className="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition duration-300"
               >
                 Register
               </Link>
@@ -70,17 +84,16 @@ const Navbar = () => {
           ) : (
             <button
               onClick={handleLogout}
-              className="px-5 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white transition"
+              className="px-5 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white transition duration-300"
             >
               Logout
             </button>
           )}
-        </div>
 
+        </div>
       </div>
     </nav>
   );
 };
 
 export default Navbar;
-
