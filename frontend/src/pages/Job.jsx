@@ -16,8 +16,7 @@ const Jobs = () => {
     try {
       const res = await api.get("/job");
       console.log("Jobs Response:", res.data);
-      setJobs(res.data.jobs);
-      
+      setJobs(res.data.jobs); 
     } catch (error) {
       console.log("Error:", error);
     } finally {

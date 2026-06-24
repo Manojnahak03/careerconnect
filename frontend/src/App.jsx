@@ -4,6 +4,8 @@ import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import Job from "./pages/Job.jsx";
 import Contact from "./pages/Contact.jsx";
+import JobDetails from "./pages/JobDetails";
+import ProtectedRoute from "./components/ProtectedRoutes.jsx";
 
 
 function App() {
@@ -12,8 +14,24 @@ function App() {
       <Route path="/" element={<Home/>} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/jobs" element={<Job/>} />
-      <Route path="/contact" element={<Contact/>} />
+      <Route path="/jobs" element={<ProtectedRoute> <Job /> </ProtectedRoute>}/>
+      <Route
+  path="/jobs/:id"
+  element={
+    <ProtectedRoute>
+      <JobDetails />
+    </ProtectedRoute>
+  }
+/>
+
+      <Route
+  path="/contact"
+  element={
+    <ProtectedRoute>
+      <Contact />
+    </ProtectedRoute>
+  }
+/>
     </Routes>
   );
 }

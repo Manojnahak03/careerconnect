@@ -10,11 +10,8 @@ import {
 const Footer = () => {
   return (
     <footer className="bg-slate-950 border-t border-slate-800 mt-20">
-
       <div className="max-w-7xl mx-auto px-6 py-10">
-
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-
           {/* Brand */}
           <div>
             <h2 className="text-3xl font-bold text-white">
@@ -56,15 +53,11 @@ const Footer = () => {
 
             </div>
           </div>
-
         </div>
-
         <div className="border-t border-slate-800 mt-8 pt-5 text-center text-gray-500">
           © 2026 Career Connect | All Rights Reserved
         </div>
-
       </div>
-
     </footer>
   );
 };
