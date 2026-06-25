@@ -38,13 +38,6 @@ const Navbar = () => {
               Home
             </NavLink>
           </li>
-
-          <li>
-            <NavLink to="/about" className={navLinkClass}>
-              About
-            </NavLink>
-          </li>
-
           {token && (
             <>
               <li>
